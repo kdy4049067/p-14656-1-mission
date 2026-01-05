@@ -23,6 +23,7 @@ public class BaseInitData {
 
     private void work1(){
         log.debug("Post entity 개수: {}",postService.count());
+        log.debug("샘플 Post 데이터 생성");
 
         if(postService.count() == 0){
             for(int i = 1; i <= 10; i++){
@@ -33,6 +34,13 @@ public class BaseInitData {
 
                 log.debug("Created Post: {}", post);
             }
+        }
+    }
+
+    private void work2(){
+        log.debug("기존 Post 전체 조회");
+        for(Post post : postService.findAll()){
+            log.debug("Existing Post: {}", post);
         }
     }
 
