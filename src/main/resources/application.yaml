@@ -1,0 +1,17 @@
+spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  profiles:
+    active: dev
+  application:
+    name: back
+  output:
+    ansi:
+      enabled: ALWAYS
+logging:
+  level:
+    com:
+      back: debug
+server:
+  port: 8080
