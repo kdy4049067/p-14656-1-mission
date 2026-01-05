@@ -18,6 +18,10 @@ public class BaseInitData {
     public ApplicationRunner baseInitDataRunner (){
         return args->{
             work1();
+            work2();
+            work3();
+            work4();
+            work5();
         };
     }
 
@@ -46,8 +50,29 @@ public class BaseInitData {
 
     private void work3(){
         log.debug("Post 단건 조회");
-        for(Post post : postService.findAll()){
-            log.debug("조회된 Post: {}", post);
+        for (Post post : postService.findAll()) {
+            Post fetchedPost = postService.findById(post.getId());
+            log.debug("조회된 Post: {}", fetchedPost);
         }
     }
+
+    private void work4(){
+        log.debug("Post 단건 수정");
+        for (Post post : postService.findAll()) {
+            String newTitle = post.getTitle() + " [Updated]";
+            String newContent = post.getContent() + " This content has been updated.";
+            Post updatedPost = postService.update(post.getId(), newTitle, newContent);
+            log.debug("Updated Post: {}", updatedPost);
+        }
+    }
+
+    private void work5(){
+        log.debug("Post 삭제");
+        for (Post post : postService.findAll()) {
+            postService.delete(post.getId());
+            log.debug("Deleted Post: {}", post.getId());
+        }
+        log.debug("삭제 후 Post 개수: {}", postService.count());
+    }
+
 }
